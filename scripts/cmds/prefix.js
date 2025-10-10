@@ -1,11 +1,8 @@
-I'mconst fs = require("fs-extra");
-const { utils } = global;
-
 module.exports = {
 	config: {
 		name: "prefix",
 		version: "2.0",
-		author: "ncs pro"
+		author: "ncs pro ",
 		countDown: 5,
 		role: 0,
 		shortDescription: {
@@ -42,7 +39,7 @@ module.exports = {
 │ ✨ 𝐵𝑜𝓉 𝒩𝒶𝓂𝑒: princes sophie 𝒜𝐼
 │ 🌐 𝒮𝓎𝓈𝓉𝑒𝓂 𝒫𝓇𝑒𝒻𝒾𝓍: %1
 │ 💬 𝒞𝒽𝒶𝓉 𝒫𝓇𝑒𝒻𝒾𝓍: %2
-│ 🧚‍♀️ 𝒟𝑒 ncs ncs
+│ 🧚‍♀️ 𝒟𝑒𝓋: ncs pro
 │ 📝 𝒯𝒾𝓅: Type -help for commands
 ╰───────────────╯`
 		}
