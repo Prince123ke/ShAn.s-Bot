@@ -1,77 +1,57 @@
-const fs = require("fs-extra");
+I'mconst fs = require("fs-extra");
 const { utils } = global;
 
 module.exports = {
 	config: {
 		name: "prefix",
-		version: "1.4",
-		author: "ShAn",
+		version: "2.0",
+		author: "ncs pro"
 		countDown: 5,
-		role: 2,
-		description: "Thay đổi dấu lệnh của bot trong box chat của bạn hoặc cả hệ thống bot (chỉ admin bot)",
+		role: 0,
+		shortDescription: {
+			en: "Change bot's prefix in chat or globally"
+		},
+		description: {
+			en: "Customize the command prefix for your chat or system (admin only)"
+		},
 		category: "config",
 		guide: {
-			vi: "   {pn} <new prefix>: thay đổi prefix mới trong box chat của bạn"
-				+ "\n   Ví dụ:"
-				+ "\n    {pn} #"
-				+ "\n\n   {pn} <new prefix> -g: thay đổi prefix mới trong hệ thống bot (chỉ admin bot)"
-				+ "\n   Ví dụ:"
-				+ "\n    {pn} # -g"
-				+ "\n\n   {pn} reset: thay đổi prefix trong box chat của bạn về mặc định",
-			en: "   {pn} <new prefix>: change new prefix in your box chat"
-				+ "\n   Example:"
-				+ "\n    {pn} #"
-				+ "\n\n   {pn} <new prefix> -g: change new prefix in system bot (only admin bot)"
-				+ "\n   Example:"
-				+ "\n    {pn} # -g"
-				+ "\n\n   {pn} reset: change prefix in your box chat to default"
+			en: `
+🌸 Usage:
++prefix <new> → Set new prefix in this group
++prefix <new> -g → Set global prefix (admin only)
++prefix reset → Reset prefix to default
+
+🧸 Examples:
++prefix #
++prefix $ -g
++prefix reset`
 		}
 	},
 
 	langs: {
-		vi: {
-			reset: "Đã reset prefix của bạn về mặc định: %1",
-			onlyAdmin: "Chỉ admin mới có thể thay đổi prefix hệ thống bot",
-			confirmGlobal: "Vui lòng thả cảm xúc bất kỳ vào tin nhắn này để xác nhận thay đổi prefix của toàn bộ hệ thống bot",
-			confirmThisThread: "Vui lòng thả cảm xúc bất kỳ vào tin nhắn này để xác nhận thay đổi prefix trong nhóm chat của bạn",
-			successGlobal: "Đã thay đổi prefix hệ thống bot thành: %1",
-			successThisThread: "Đã thay đổi prefix trong nhóm chat của bạn thành: %1",
-			myPrefix: "🦋𝘼𝙎𝙎𝘼𝙇𝘼𝙈𝙐𝘼𝙇𝘼𝙄𝙆𝙐𝙈✨"
-				+ "\n                       "
-				+ "\n 𝙃𝙚𝙡𝙡𝙤 𝙢𝙮 𝙣𝙖𝙢𝙚 𝙞𝙨 ♡𝕮𝖍𝖔𝖈𝖔𝖑𝖆𝖙𝖊 𝕼𝖚𝖊𝖊𝖓♡"
-				+ "\n 𝙃𝙚𝙧𝙚 𝙞𝙨 𝙢𝙮 ❇️ 𝙋𝙍𝙀𝙁𝙄𝙓 ❇️"
-				+ "\n                         "
-				+ "\n ~🌀 𝙎𝙔𝙎𝙏𝙀𝙈 𝙋𝙍𝙀𝙁𝙄𝙓: %1"
-				+ "\n ~♻️ 𝙋𝙍𝙀𝙁𝙄𝙓 𝙁𝙊𝙍 𝙏𝙃𝙀 𝙂𝙍𝙊𝙐𝙋: %2"
-				+ "\n                         "
-				+ "\n 💠 𝙃𝙀𝙍𝙀 𝙄𝙎 𝙈𝙔 𝙊𝙒𝙉𝙀𝙍 💠"
-				+ "\n ~𝙁𝘽✨:https://www.facebook.com/sirana252"
-		},
 		en: {
-			reset: "🙆| Your prefix has been reset to default: %1",
-			onlyAdmin: "⭕| Only admin can change prefix of system bot",
-			confirmGlobal: "⚠️| Please react to this message to confirm change prefix of system bot",
-			confirmThisThread: "⚠️| Please react to this message to confirm change prefix in your box chat",
-			successGlobal: "♻️| Changed prefix of system bot to: %1",
-			successThisThread: "♻️| Changed prefix in your box chat to: %1",
-			myPrefix: "🦋𝘼𝙎𝙎𝘼𝙇𝘼𝙈𝙐𝘼𝙇𝘼𝙄𝙆𝙐𝙈✨"
-				+ "\n                       "
-				+ "\n 𝙃𝙚𝙡𝙡𝙤 𝙢𝙮 𝙣𝙖𝙢𝙚 𝙞𝙨 ♡𝕮𝖍𝖔𝖈𝖔𝖑𝖆𝖙𝖊 𝕼𝖚𝖊𝖊𝖓♡"
-				+ "\n 𝙃𝙚𝙧𝙚 𝙞𝙨 𝙢𝙮 ❇️ 𝙋𝙍𝙀𝙁𝙄𝙓 ❇️"
-				+ "\n                         "
-				+ "\n ~🌀 𝙎𝙔𝙎𝙏𝙀𝙈 𝙋𝙍𝙀𝙁𝙄𝙓: %1"
-				+ "\n ~♻️ 𝙋𝙍𝙀𝙁𝙄𝙓 𝙁𝙊𝙍 𝙏𝙃𝙀 𝙂𝙍𝙊𝙐𝙋: %2"
-				+ "\n                         "
-				+ "\n 💠 𝙃𝙀𝙍𝙀 𝙄𝙎 𝙈𝙔 𝙊𝙒𝙉𝙀𝙍 💠"
-				+ "\n ~𝙁𝘽✨:https://www.facebook.com/sirana252"
+			reset: "💠 Your prefix has been reset to default: 【 %1 】",
+			onlyAdmin: "⛔ Only bot admin can set global prefix!",
+			confirmGlobal: "🌐 Please react to confirm global prefix change~",
+			confirmThisThread: "💬 Please react to confirm group prefix change~",
+			successGlobal: "✅ Global prefix successfully changed to: 『 %1 』",
+			successThisThread: "✅ Group prefix successfully changed to: 『 %1 』",
+			myPrefix: `
+╭───[ 🌸 𝒫𝓇𝑒𝒻𝒾𝓍 𝒾𝓃𝒻𝑜 ]───╮
+│ ✨ 𝐵𝑜𝓉 𝒩𝒶𝓂𝑒: princes sophie 𝒜𝐼
+│ 🌐 𝒮𝓎𝓈𝓉𝑒𝓂 𝒫𝓇𝑒𝒻𝒾𝓍: %1
+│ 💬 𝒞𝒽𝒶𝓉 𝒫𝓇𝑒𝒻𝒾𝓍: %2
+│ 🧚‍♀️ 𝒟𝑒 ncs ncs
+│ 📝 𝒯𝒾𝓅: Type -help for commands
+╰───────────────╯`
 		}
 	},
 
 	onStart: async function ({ message, role, args, commandName, event, threadsData, getLang }) {
-		if (!args[0])
-			return message.SyntaxError();
+		if (!args[0]) return message.SyntaxError();
 
-		if (args[0] == 'reset') {
+		if (args[0].toLowerCase() === 'reset') {
 			await threadsData.set(event.threadID, null, "data.prefix");
 			return message.reply(getLang("reset", global.GoatBot.config.prefix));
 		}
@@ -83,39 +63,43 @@ module.exports = {
 			newPrefix
 		};
 
-		if (args[1] === "-g")
-			if (role < 2)
-				return message.reply(getLang("onlyAdmin"));
-			else
-				formSet.setGlobal = true;
-		else
+		if (args[1] === "-g") {
+			if (role < 2) return message.reply(getLang("onlyAdmin"));
+			formSet.setGlobal = true;
+		} else {
 			formSet.setGlobal = false;
+		}
 
-		return message.reply(args[1] === "-g" ? getLang("confirmGlobal") : getLang("confirmThisThread"), (err, info) => {
-			formSet.messageID = info.messageID;
-			global.GoatBot.onReaction.set(info.messageID, formSet);
-		});
+		return message.reply(
+			formSet.setGlobal ? getLang("confirmGlobal") : getLang("confirmThisThread"),
+			(err, info) => {
+				formSet.messageID = info.messageID;
+				global.GoatBot.onReaction.set(info.messageID, formSet);
+			}
+		);
 	},
 
 	onReaction: async function ({ message, threadsData, event, Reaction, getLang }) {
 		const { author, newPrefix, setGlobal } = Reaction;
-		if (event.userID !== author)
-			return;
+		if (event.userID !== author) return;
+
 		if (setGlobal) {
 			global.GoatBot.config.prefix = newPrefix;
 			fs.writeFileSync(global.client.dirConfig, JSON.stringify(global.GoatBot.config, null, 2));
 			return message.reply(getLang("successGlobal", newPrefix));
-		}
-		else {
+		} else {
 			await threadsData.set(event.threadID, newPrefix, "data.prefix");
 			return message.reply(getLang("successThisThread", newPrefix));
 		}
 	},
 
 	onChat: async function ({ event, message, getLang }) {
-		if (event.body && event.body.toLowerCase() === "prefix")
-			return () => {
-				return message.reply(getLang("myPrefix", global.GoatBot.config.prefix, utils.getPrefix(event.threadID)));
-			};
+		if (event.body?.toLowerCase() === "prefix") {
+			return message.reply(getLang(
+				"myPrefix",
+				global.GoatBot.config.prefix,
+				utils.getPrefix(event.threadID)
+			));
+		}
 	}
 };
